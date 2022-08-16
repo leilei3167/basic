@@ -74,6 +74,23 @@ func (w *withStack) Format(s fmt.State, verb rune) {
 	}
 }
 
+func WithStack(err error) error {
+	if err == nil {
+		return nil
+	}
+
+	if e, ok := err.(*withCode); ok {
+		return &withCode{
+			err:   e.err,
+			code:  e.code,
+			cause: err,
+			stack: callers(),
+		}
+	}
+	return &withStack{err, callers()}
+
+}
+
 type withMessage struct {
 	cause error
 	msg   string

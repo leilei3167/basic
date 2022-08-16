@@ -2,14 +2,17 @@ package main
 
 import (
 	"fmt"
-	"net-mapping/pkg/errors"
+
+	"github.com/leilei3167/basic/pkg/errors"
 )
 
 func main() {
 	e := err3()
 	fmt.Println("got err:", e)
 	fmt.Println()
-	fmt.Printf("%+v", e)
+	fmt.Printf("%+v\n", e)
+	fmt.Println("------------------")
+	fmt.Printf("%#v\n", e)
 }
 
 func err1() error {

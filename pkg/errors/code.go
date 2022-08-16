@@ -9,7 +9,6 @@ import (
 var (
 	unknownCoder = defaultCoder{C: 1, HTTP: http.StatusInternalServerError,
 		Ext: "An internal server error occurred", Ref: "none"}
-
 	codes   = map[int]Coder{}
 	codeMux = &sync.Mutex{}
 )
@@ -72,7 +71,7 @@ func MustRegister(coder Coder) {
 	defer codeMux.Unlock()
 
 	if _, ok := codes[coder.Code()]; ok {
-		panic(fmt.Sprint("code: %d is already exist", coder.Code()))
+		panic(fmt.Sprintf("code: %d is already exist", coder.Code()))
 	}
 
 	codes[coder.Code()] = coder

@@ -120,7 +120,7 @@ type stack []uintptr //代表调用堆栈,由许多个帧组成
 
 func callers() *stack {
 	var pcs [stackDepth]uintptr
-	n := runtime.Callers(3, pcs[:]) // skip first 3 frames (runtime.Callers + runtime.Callers)
+	n := runtime.Callers(3, pcs[:]) // callers自身(1),callers这个函数(2),调用callers的函数3(如withstack),跳过记录这3个函数
 	var st stack = pcs[0:n]
 	return &st
 }
