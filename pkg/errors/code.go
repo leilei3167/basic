@@ -72,7 +72,7 @@ func MustRegister(coder Coder) {
 	defer codeMux.Unlock()
 
 	if _, ok := codes[coder.Code()]; ok {
-		panic(fmt.Sprint("code: %d is already exist", coder.Code()))
+		panic(fmt.Sprintf("code: %d is already exist", coder.Code()))
 	}
 
 	codes[coder.Code()] = coder
