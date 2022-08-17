@@ -46,7 +46,7 @@ func (w *withCode) Format(state fmt.State, verb rune) {
 		errs := list(w) //获取整条错误链上的错误
 		length := len(errs)
 		for k, e := range errs {
-			//将每个错误格式化
+			//将每个错误按统一的格式 格式化
 			finfo := buildFormatInfo(e)
 			//构建数据(此处至少打印最新的错误信息)
 			jsonData, str = format(length-k-1, jsonData, str, finfo, sep, flagDetail, flagTrace, modeJSON)
