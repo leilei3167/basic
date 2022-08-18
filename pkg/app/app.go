@@ -2,13 +2,14 @@ package app
 
 import (
 	"fmt"
-	"github.com/fatih/color"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
-	"net-mapping/pkg/base/util/term"
 	"os"
 	"runtime"
 	"strings"
+
+	"github.com/fatih/color"
+	"github.com/leilei3167/basic/pkg/base/util/term"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var (
@@ -132,9 +133,10 @@ func (a *App) buildCommand() {
 	//读取是否加入了子命令,如果有,则进行构建
 	if len(a.commands) > 0 {
 		for _, command := range a.commands {
-			fmt.Println(command)
-			//TODO:支持子命令的构建
+			cmd.AddCommand(command.cobraCommand())
 		}
+		//如果有子命令的话,增加额外一个help命令,以查看子命令列表
+		cmd.SetHelpCommand(helpCommand(formatBasename(a.basename)))
 	}
 
 	//设置程序的入口,程序最终会运行此处,此函数会先处理合并形成应用程序可用的配置项
@@ -149,7 +151,6 @@ func (a *App) buildCommand() {
 		for _, set := range namedFlagSets.FlagSets {
 			cmd.Flags().AddFlagSet(set) //将分组的flag绑定到主命令中
 		}
-
 	}
 	globalFlags := namedFlagSets.FlagSet("global")
 	//再根据实际的配置决定是否额外添加一些全局选项

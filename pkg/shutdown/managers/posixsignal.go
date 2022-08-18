@@ -1,10 +1,11 @@
 package managers
 
 import (
-	"net-mapping/pkg/shutdown"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/leilei3167/basic/pkg/shutdown"
 )
 
 const Name = "PosixSignalManager"

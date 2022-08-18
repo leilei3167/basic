@@ -3,12 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
-	"golang.org/x/sync/errgroup"
 	"log"
-	"net-mapping/pkg/errors"
-	"net-mapping/pkg/shutdown"
-	"net-mapping/pkg/shutdown/managers"
 	"net/http"
+
+	"github.com/leilei3167/basic/pkg/shutdown"
+	"github.com/leilei3167/basic/pkg/shutdown/managers"
+
+	"github.com/leilei3167/basic/pkg/errors"
+	"golang.org/x/sync/errgroup"
 )
 
 func main() {

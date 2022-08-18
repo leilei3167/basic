@@ -10,9 +10,7 @@ func main() {
 	e := err3()
 	fmt.Println("got err:", e)
 	fmt.Println()
-	fmt.Printf("%+v\n", e)
-	fmt.Println("------------------")
-	fmt.Printf("%#v\n", e)
+	fmt.Printf("%+v", e)
 }
 
 func err1() error {

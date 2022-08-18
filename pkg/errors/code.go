@@ -9,6 +9,7 @@ import (
 var (
 	unknownCoder = defaultCoder{C: 1, HTTP: http.StatusInternalServerError,
 		Ext: "An internal server error occurred", Ref: "none"}
+
 	codes   = map[int]Coder{}
 	codeMux = &sync.Mutex{}
 )
